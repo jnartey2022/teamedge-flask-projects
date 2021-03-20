@@ -2,13 +2,11 @@ from flask import Flask, redirect, url_for, request, render_template
 from sense_hat import SenseHat   #import the SenseHat object from the sense_hat library
 from time import sleep
 app = Flask(__name__)
+sense = SenseHat()
 @app.route("/")
 def home_page():
    return render_template("login.html")
 
-@app.route('/success/<name>')
-def success(name):
-   return "Welcome %s" %name + ". This is the SenseHat project"
 
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
@@ -21,13 +19,11 @@ def login():
 
 @app.route('/success/<name>')
 def success(name):
-name = request.form['nm']
-   return   
+   sense.show_message("Welcome " + name)
+   return "Welcome %s" % name
 # Lines 22 to 25 is where the SenseHat is supposed to display the user input text, but I haven't finished it yet as we got pulled from breakout rooms.
 
-sense = SenseHat()
-name = request.form['nm']
-sense.show_message(name)
+
 
 if __name__ == '__main__':
    app.run(debug = True)
