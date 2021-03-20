@@ -22,8 +22,8 @@ def login():
 @app.route('/success/<name>')
 def success(name):
 name = request.form['nm']
-   return "
-
+   return   
+# Lines 22 to 25 is where the SenseHat is supposed to display the user input text, but I haven't finished it yet as we got pulled from breakout rooms.
 
 sense = SenseHat()
 name = request.form['nm']
