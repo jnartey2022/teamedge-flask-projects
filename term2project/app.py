@@ -16,12 +16,15 @@ def login():
    else:
       user = request.args.get('nm')
       return redirect(url_for('success',name = user))
+   
 
 @app.route('/success/<name>')
 def success(name):
-   sense.show_message("Welcome " + name)
+   sense.show_message("Welcome " + name, text_colour=[0,255,0])
+   color = (0, 255, 0)
    return "Welcome %s" % name
-# Lines 22 to 25 is where the SenseHat is supposed to display the user input text, but I haven't finished it yet as we got pulled from breakout rooms.
+
+# Lines 20 to 23, this portion of the code is where the text from the website displays onto the SenseHat.
 
 
 
