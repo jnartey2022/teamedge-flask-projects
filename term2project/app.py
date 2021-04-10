@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, request, render_template
 from sense_hat import SenseHat   #import the SenseHat object from the sense_hat library
 from time import sleep
+import sqlite3
 app = Flask(__name__)
 sense = SenseHat()
 @app.route("/")
@@ -16,6 +17,9 @@ def login():
    else:
       user = request.args.get('nm')
       return redirect(url_for('success',name = user))
+
+      conn = sqlite3.connect('./static/data/responses.db')
+      curs = conn.cursor()
    
 
 @app.route('/success/<name>')
